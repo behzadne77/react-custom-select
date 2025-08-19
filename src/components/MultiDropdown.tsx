@@ -4,7 +4,7 @@ import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import './MultiDropdown.scss';
 
 interface MultiDropdownProps {
-  options: {label: string, value: string}[];
+  options: {label: string, icon?: string, value: string}[];
   onChange: (value: string) => void;
   value: string;
   placeholder?: string;
@@ -13,7 +13,7 @@ interface MultiDropdownProps {
 const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState(props.value || '');
-  const [options, setOptions] = useState<{label: string, value: string}[]>(props.options || []);
+  const [options, setOptions] = useState<{label: string, value: string, icon?: string}[]>(props.options || []);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   }
@@ -25,14 +25,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
     if (e.key === 'Enter') {
         const found = options.find(option => option.label.toLowerCase() === value.toLowerCase());
         if (!found) {
-            setOptions([...options, {label: value, value: value}]);
+            setOptions([...options, {label: value, value: value, icon: ''}]);
             
         }
     }
   }
   const handleAddOption = (value: string) => {
     console.log("handleAddOption", value)
-    setOptions([...options, {label: value, value: value}]);
+    setOptions([...options, {label: value, value: value, icon: ''}]);
     setValue(value);
   }
 
@@ -74,6 +74,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
                 (
                     <div key={option.value} onClick={() => handleOptionClick(option.value)} className={`${value === option.value ? 'selected' : ''}`}>
                         {option.label}
+                        {option.icon && <img src={option.icon} alt={option.label} />}
                         {value === option.value &&
                         <span className="tick">✓</span>
                         }
