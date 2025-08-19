@@ -1,0 +1,86 @@
+
+.multi-dropdown {
+    position: relative;
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $gray-300;
+        border-radius: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("/arrow-down.svg");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+        padding-right: 30px;
+        &:focus {
+            outline: none;
+            border-color: $primary-800;
+            box-shadow: 0 0 0 4px rgba($primary-500, 0.2);
+        }
+        &.open {
+            background-image: url("/arrow-up.svg");
+            background-position: right 10px center;
+            background-size: 12px;
+            padding-right: 10px;
+        }
+    }
+    .multi-dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin-top: 10px;
+        background-color: white;
+        border: 1px solid $gray-300;
+        border-radius: 10px;
+        padding: 10px;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-height: 200px;
+        overflow-y: auto;
+        * {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            color: $gray-600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            &:hover {
+                background-color: $primary-100;
+                color: $primary-600;
+            }
+            &.selected {
+                background-color: $primary-100;
+                color: $primary-700;
+                font-weight: bold;
+            }
+            .tick, span {
+                font-size: 1rem;
+                color: $primary-600;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            button {
+                margin: 0;
+                padding: 5px 15px;
+                border: none;
+                background-color: $primary-200;
+                color: $primary-700;
+                font-size: 0.7rem;
+                font-weight: bold;
+                border-radius: 25px;
+                cursor: pointer;
+                &:hover {
+                    color: $primary-700;
+                }
+            }
+        }
+    }
+}
