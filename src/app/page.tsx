@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [value, setValue] = useState('');
-  const [options, setOptions] = useState<{label: string, icon?: string, value: string}[]>([
+  const [options] = useState<{label: string, icon?: string, value: string}[]>([
     {label: 'Education', value: 'education', icon: '/images/mortarboard.png'},
     {label: 'Yeeeh, science!', value: 'science', icon: '/images/science.png'},
     {label: 'Art', value: 'art', icon: '/images/palette.png'},

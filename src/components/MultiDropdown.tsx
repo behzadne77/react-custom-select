@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
 import './MultiDropdown.scss';
+import Image from 'next/image';
 
 interface MultiDropdownProps {
   options: {label: string, icon?: string, value: string}[];
@@ -65,16 +66,16 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
         onKeyDown={handleKeyDown}
         value={value} 
         onClick={handleClick} 
-        className={`${isOpen ? 'open' : ''}`}
+        className={isOpen ? 'open' : ''}
         placeholder={props.placeholder || 'Select an option'}
         />
         {isOpen && (
             <div className="multi-dropdown-options" ref={dropdownRef}>
                 {findInOptions(value).map((option) => 
                 (
-                    <div key={option.value} onClick={() => handleOptionClick(option.value)} className={`${value === option.value ? 'selected' : ''}`}>
+                    <div key={option.value} onClick={() => handleOptionClick(option.value)} className={value === option.value ? 'selected' : ''}>
                         {option.label}
-                        {option.icon && <img src={option.icon} alt={option.label} />}
+                        {option.icon && <Image src={option.icon} alt={option.label} width={30} height={30} />}
                         {value === option.value &&
                         <span className="tick">✓</span>
                         }
@@ -83,7 +84,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (props) => {
                 )}
                 {!findExactMatch(value) && value.length > 0 && (
                   <div className="add-option" onClick={() => handleAddOption(value)}>
-                    <span>Add "{value}" to the list</span>
+                    <span>Add {value} to the list</span>
                     <button>Add</button>
                   </div>
                 )}
